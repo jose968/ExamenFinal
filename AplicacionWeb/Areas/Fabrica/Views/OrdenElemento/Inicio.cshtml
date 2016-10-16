@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AplicacionWeb.Modelo.OrderItem>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<h2>Index</h2>
+<p>
+    @CustomHelper.Message("successMessage", "success", "The record was created.")
+    @CustomHelper.Message("editMessage", "info", "The record was Update.")
+    @CustomHelper.Message("deleteMessage", "danger", "The record was Delete.")
+</p>
+<p>
+    <div class="btn btn-success">
+        @Html.ActionLink("Create New", "Crear")
+    </div>
+</p>
+
+<div class="row">
+    @CustomHelper.RowSizeDropdown()
+    <div class="col-lg-8" id="paginator-container">
+        <div class="paginator"></div>
+    </div>
+</div>
+
+
+
+<div id="clienteContent"></div>
+
+
+
+<input type="hidden" id="baseUrl" value="@Url.Action("", new { controller="OrdenElemento", area="Fabrica" })" />
+
+@CustomHelper.GetModal("OrdenElemento")
+@Scripts.Render("~/bundles/unobtrusive-ajax")
+@Scripts.Render("~/bundles/modal")
+@Scripts.Render("~/bundles/paginator")
+@Scripts.Render("~/bundles/cliente")
+
+<script type="text/javascript">
+    var pageSizeAction = '@Url.Action("PageSize", new { controller = "OrdenElemento", area = "Fabrica" })';
+    var listAction = '@Url.Action("Lista", new { controller = "OrdenElemento", area = "Fabrica" })';
+</script>
+

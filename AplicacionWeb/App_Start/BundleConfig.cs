@@ -14,6 +14,19 @@ namespace AplicacionWeb
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/unobtrusive-ajax").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/modal").Include(
+                        "~/Scripts/Shared/modal.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/paginator").Include(
+                        "~/Scripts/jquery.bootpag.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/cliente").Include(
+                        "~/Areas/Fabrica/Scripts/Fabrica.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

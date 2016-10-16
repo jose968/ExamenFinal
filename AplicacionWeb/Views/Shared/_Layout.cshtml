@@ -23,9 +23,11 @@
                     @if (Request.IsAuthenticated)
                     {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Persona", "Index", "Person")</li>
-                        <li><a href="#">Opción 2</a></li>
-                        <li><a href="#">Opción 3</a></li>
+                        <li>@Html.ActionLink("Cliente", "Inicio", new { area = "Fabrica", Controller = "Cliente" })</li>
+                        <li>@Html.ActionLink("Orden", "Inicio", new { area = "Fabrica", Controller = "Orden" })</li>
+                        <li>@Html.ActionLink("OrdenElemento", "Inicio", new { area = "Fabrica", Controller = "OrdenElemento" })</li>
+                        <li>@Html.ActionLink("Producto", "Inicio", new { area = "Fabrica", Controller = "Producto" })</li>
+                        <li>@Html.ActionLink("Proveedor", "Inicio", new { area = "Fabrica", Controller = "Proveedor" })</li>
                     </ul>
                     }
                     @Html.Partial("_LogeoParcial")

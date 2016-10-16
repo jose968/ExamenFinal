@@ -6,13 +6,12 @@ using System.Web.Mvc;
 using AplicacionWeb.Filters;
 using AplicacionWeb.Modelo;
 using AplicacionWeb.Repositorio;
-using System.Net;
 
 namespace AplicacionWeb.Areas.Fabrica.Controllers
 {
-    public class ClienteController : BaseController<Customer>
+    public class OrdenController : BaseController<Order>
     {
-        // GET: Fabrica/Cliente
+        // GET: Fabrica/Orden
         public ActionResult Inicio()
         {
             return View(_repositorio.PaginadoLista((x => x.Id), 1, 15));
@@ -41,18 +40,18 @@ namespace AplicacionWeb.Areas.Fabrica.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(Customer cliente)
+        public ActionResult Crear(Order orden)
         {
-            if (!ModelState.IsValid) return View(cliente);
-            _repositorio.Agregar(cliente);
+            if (!ModelState.IsValid) return View(orden);
+            _repositorio.Agregar(orden);
             return RedirectToAction("Inicio");
         }
 
         public ActionResult Editar(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Editar", cliente);
+            var orden = _repositorio.ObtenerId(x => x.Id == id);
+            if (orden == null) return RedirectToAction("Index");
+            return PartialView("_Editar", orden);
 
             //var customer = _repositorio.ObtenerId(x => x.Id == id);
             //if (customer == null) return RedirectToAction("Index");
@@ -60,10 +59,10 @@ namespace AplicacionWeb.Areas.Fabrica.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Customer cliente)
+        public ActionResult Editar(Order orden)
         {
-            if (!ModelState.IsValid) return PartialView("_Editar", cliente);
-            _repositorio.Editar(cliente);
+            if (!ModelState.IsValid) return PartialView("_Editar", orden);
+            _repositorio.Editar(orden);
             return RedirectToAction("Inicio");
             //if (!ModelState.IsValid) return View(customer);
             //_repositorio.Editar(customer);
@@ -73,25 +72,25 @@ namespace AplicacionWeb.Areas.Fabrica.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Eliminar", cliente);
+            var orden = _repositorio.ObtenerId(x => x.Id == id);
+            if (orden == null) return RedirectToAction("Index");
+            return PartialView("_Eliminar", orden);
         }
 
         [HttpPost]
-        public ActionResult Eliminar(Customer cliente)
+        public ActionResult Eliminar(Order orden)
         {
-            cliente = _repositorio.ObtenerId(x => x.Id == cliente.Id);
-            _repositorio.Eliminar(cliente);
+            orden = _repositorio.ObtenerId(x => x.Id == orden.Id);
+            _repositorio.Eliminar(orden);
             return RedirectToAction("Inicio");
         }
 
 
         public ActionResult Detalle(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Detalle", cliente);
+            var orden = _repositorio.ObtenerId(x => x.Id == id);
+            if (orden == null) return RedirectToAction("Index");
+            return PartialView("_Detalle", orden);
 
         }
     }

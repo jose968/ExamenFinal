@@ -6,13 +6,12 @@ using System.Web.Mvc;
 using AplicacionWeb.Filters;
 using AplicacionWeb.Modelo;
 using AplicacionWeb.Repositorio;
-using System.Net;
 
 namespace AplicacionWeb.Areas.Fabrica.Controllers
 {
-    public class ClienteController : BaseController<Customer>
+    public class ProveedorController : BaseController<Supplier>
     {
-        // GET: Fabrica/Cliente
+        // GET: Fabrica/Proveedor
         public ActionResult Inicio()
         {
             return View(_repositorio.PaginadoLista((x => x.Id), 1, 15));
@@ -41,57 +40,50 @@ namespace AplicacionWeb.Areas.Fabrica.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(Customer cliente)
+        public ActionResult Crear(Supplier proveedor)
         {
-            if (!ModelState.IsValid) return View(cliente);
-            _repositorio.Agregar(cliente);
+            if (!ModelState.IsValid) return View(proveedor);
+            _repositorio.Agregar(proveedor);
             return RedirectToAction("Inicio");
         }
 
         public ActionResult Editar(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Editar", cliente);
-
-            //var customer = _repositorio.ObtenerId(x => x.Id == id);
-            //if (customer == null) return RedirectToAction("Index");
-            //return View(customer);
+            var proveedor = _repositorio.ObtenerId(x => x.Id == id);
+            if (proveedor == null) return RedirectToAction("Index");
+            return PartialView("_Editar", proveedor);
         }
 
         [HttpPost]
-        public ActionResult Editar(Customer cliente)
+        public ActionResult Editar(Supplier proveedor)
         {
-            if (!ModelState.IsValid) return PartialView("_Editar", cliente);
-            _repositorio.Editar(cliente);
+            if (!ModelState.IsValid) return PartialView("_Editar", proveedor);
+            _repositorio.Editar(proveedor);
             return RedirectToAction("Inicio");
-            //if (!ModelState.IsValid) return View(customer);
-            //_repositorio.Editar(customer);
-            //return RedirectToAction("Index");
         }
 
 
         public ActionResult Eliminar(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Eliminar", cliente);
+            var proveedor = _repositorio.ObtenerId(x => x.Id == id);
+            if (proveedor == null) return RedirectToAction("Index");
+            return PartialView("_Eliminar", proveedor);
         }
 
         [HttpPost]
-        public ActionResult Eliminar(Customer cliente)
+        public ActionResult Eliminar(Supplier proveedor)
         {
-            cliente = _repositorio.ObtenerId(x => x.Id == cliente.Id);
-            _repositorio.Eliminar(cliente);
+            proveedor = _repositorio.ObtenerId(x => x.Id == proveedor.Id);
+            _repositorio.Eliminar(proveedor);
             return RedirectToAction("Inicio");
         }
 
 
         public ActionResult Detalle(int id)
         {
-            var cliente = _repositorio.ObtenerId(x => x.Id == id);
-            if (cliente == null) return RedirectToAction("Index");
-            return PartialView("_Detalle", cliente);
+            var proveedor = _repositorio.ObtenerId(x => x.Id == id);
+            if (proveedor == null) return RedirectToAction("Index");
+            return PartialView("_Detalle", proveedor);
 
         }
     }

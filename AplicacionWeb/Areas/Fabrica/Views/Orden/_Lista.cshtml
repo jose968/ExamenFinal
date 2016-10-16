@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AplicacionWeb.Modelo.Order>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                <a href="#"
+                   onClick="getModalContent('@Url.Action("Editar", new { area="Fabrica", id = item.Id })')"
+                   data-toggle="modal"
+                   data-target="#modal-container"
+                   class="btn btn-success">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </a>
+
+                <a href="#"
+                   onClick="getModalContent('@Url.Action("Detalle", new { area="Fabrica", id = item.Id })')"
+                   data-toggle="modal"
+                   data-target="#modal-container"
+                   class="btn btn-success">
+                    <span class="glyphicon glyphicon-eye-open"></span> Details
+                </a>
+
+                <a href="#"
+                   onClick="getModalContent('@Url.Action("Eliminar", new { area="Fabrica", id = item.Id })')"
+                   data-toggle="modal"
+                   data-target="#modal-container"
+                   class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span> Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>
