@@ -13,6 +13,7 @@ namespace AplicacionWeb.Areas.Fabrica.Controllers
     public class ClienteController : BaseController<Customer>
     {
         // GET: Fabrica/Cliente
+    
         public ActionResult Inicio()
         {
             return View(_repositorio.PaginadoLista((x => x.Id), 1, 15));

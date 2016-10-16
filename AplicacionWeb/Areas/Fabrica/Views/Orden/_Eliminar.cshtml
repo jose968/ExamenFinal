@@ -45,7 +45,16 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+   @using (Ajax.BeginForm("Eliminar",
+                         new { controller = "Orden", area = "Fabrica" },
+                         new AjaxOptions()
+                         {
+                             HttpMethod = "Post",
+                             InsertionMode = InsertionMode.Replace,
+                             UpdateTargetId = "modal-body",
+                             OnSuccess = "closeModal('delete')"
+                         }))
+   {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
         <div class="form-actions no-color">

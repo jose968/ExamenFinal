@@ -18,6 +18,11 @@ namespace AplicacionWeb.Repositorio
             db = new ContextoWebDb();
         }
 
+        public BaseRepositorio(ContextoWebDb webcontext)
+        {
+            db = webcontext;
+        }
+
         public int Agregar(T entidad)
         {
             db.Entry(entidad).State = EntityState.Added;
